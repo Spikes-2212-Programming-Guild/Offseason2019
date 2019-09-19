@@ -24,6 +24,12 @@ public class Latch extends Subsystem {
     public void close(){
         servo.setAngle(CLOSE_ANGLE.get());
     }
+    public boolean isOpen(){
+        return servo.getAngle()==OPEN_ANGLE.get();
+    }
+    public boolean isClose(){
+        return servo.getAngle()==CLOSE_ANGLE.get();
+    }
 
     @Override
     protected void initDefaultCommand() {
