@@ -9,4 +9,7 @@ package frc.robot;
 
 
 public class RobotMap {
+    public static interface PWM{
+        int LATCH_SERVO=1;
+    }
 }
