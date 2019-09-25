@@ -9,4 +9,11 @@ package frc.robot;
 
 
 public class RobotMap {
+    public interface PWM{
+        int gripperRight=1;
+        int gripperLeft=2;
+    }
+    public interface DIO{
+        int limitSwitch=1;
+    }
 }
