@@ -7,17 +7,23 @@
 
 package frc.robot;
 
+import com.spikes2212.command.drivetrains.TankDrivetrain;
+import com.spikes2212.command.drivetrains.commands.DriveArcade;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Robot extends TimedRobot {
 
   public static OI oi;
+  public static TankDrivetrain drivetrain;
 
   @Override
   public void robotInit() {
     oi = new OI();
+    drivetrain=SubsystemFactory.createDrivetrain();
+    drivetrain.setDefaultCommand(new DriveArcade(drivetrain, ()->OI.getRightY(),()->OI.getLeftX()));
   }
+
   @Override
   public void robotPeriodic() {
   }

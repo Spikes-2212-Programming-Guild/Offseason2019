@@ -9,4 +9,10 @@ package frc.robot;
 
 
 public class RobotMap {
+    public interface CAN{
+        int DRIVETRAIN_TALON_LEFT =5;
+        int DRIVETRAIN_TALON_RIGHT =4;
+        int DRIVETRAIN_VICTOR_LEFT =6;
+        int DRIVETRAIN_VICTOR_RIGHT =1;
+    }
 }
