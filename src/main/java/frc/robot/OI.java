@@ -11,6 +11,7 @@ import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
 import com.spikes2212.utils.RunnableCommand;
 import com.spikes2212.utils.XboXUID;
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.subsystem.Gripper;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,8 +22,8 @@ public class OI /* GEVALD! */ {
     private Button gripperIn= xbox.getRBButton();
     private Button gripperOut= xbox.getRTButton();
     public OI(){
-        gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper,SubsystemConstants.Gripper.IN_SPEED));
-        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper,SubsystemConstants.Gripper.OUT_SPEED));
+        gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
+        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper,Gripper.OUT_SPEED));
     }
 
 
