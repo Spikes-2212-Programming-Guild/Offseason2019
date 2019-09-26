@@ -9,4 +9,14 @@ package frc.robot;
 
 
 public class RobotMap {
+    public static interface CAN {
+        int MASTER = 0;
+        int SLAVE_0 = 1;
+        int SLAVE_1 = 2;
+    }
+
+    public static interface DIO {
+        int LIMIT_BOTTOM = 0;
+        int LIMIT_TOP = 1;
+    }
 }
