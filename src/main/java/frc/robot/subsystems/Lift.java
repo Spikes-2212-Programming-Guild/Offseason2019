@@ -19,6 +19,11 @@ public class Lift extends GenericSubsystem {
         this.topLimit = topLimit;
         this.bottomLimit = bottomLimit;
         this.encoder = encoder;
+
+        addChild(gearbox);
+        addChild(topLimit);
+        addChild(bottomLimit);
+        addChild(encoder);
     }
 
     @Override
@@ -33,10 +38,6 @@ public class Lift extends GenericSubsystem {
         else if(v < 0 && bottomLimit.get())
             return false;
         return true;
-    }
-
-    public void brake() {
-        gearbox.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override

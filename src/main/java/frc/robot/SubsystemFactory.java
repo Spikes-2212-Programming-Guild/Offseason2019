@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.TalonSRXEncoder;
@@ -10,6 +11,7 @@ public class SubsystemFactory {
     public static Lift createLift() {
         Gearbox gearbox = new Gearbox(RobotMap.CAN.LIFT_MASTER,
                 new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_0), new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_1));
+        gearbox.setNeutralMode(NeutralMode.Brake);
 
         DigitalInput bottomLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_BOTTOM);
         DigitalInput topLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_TOP);
