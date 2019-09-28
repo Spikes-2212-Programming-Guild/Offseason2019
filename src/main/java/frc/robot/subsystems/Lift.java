@@ -50,7 +50,7 @@ public class Lift extends GenericSubsystem {
 
     @Override
     public void stop() {
-        gearbox.set(0);
+        gearbox.stopMotor();
     }
 
     @Override
