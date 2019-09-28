@@ -1,10 +1,10 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.commands.lift.LowerLift;
 
 public class Lift extends GenericSubsystem {
     Gearbox gearbox;
@@ -55,6 +55,6 @@ public class Lift extends GenericSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new LowerLift());
     }
 }
