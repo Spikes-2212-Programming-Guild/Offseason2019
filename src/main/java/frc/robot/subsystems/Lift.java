@@ -17,17 +17,23 @@ public class Lift extends GenericSubsystem {
 
     public static final Supplier<Double> PID_SWITCH_POINT = namespace.addConstantDouble("PID_SWITCH_POINT", 40);
 
-    public static final Supplier<Double> KP_LOW = lowPIDNamespace.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_LOW = lowPIDNamespace.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_LOW = lowPIDNamespace.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_LOW = lowPIDNamespace.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_LOW = lowPIDNamespace.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_LOW_LEVEL = lowPIDNamespace.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_LOW_LEVEL = lowPIDNamespace.addConstantDouble("Wait Time", 1);
 
-    public static final Supplier<Double> KP_HIGH = highPIDNamespace.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_HIGH = highPIDNamespace.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_HIGH = highPIDNamespace.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_HIGH = highPIDNamespace.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_HIGH = highPIDNamespace.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_HIGH_LEVEL = highPIDNamespace.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_HIGH_LEVEL = highPIDNamespace.addConstantDouble("Wait Time", 1);
+
+    public static final PIDSettings LOW_LEVEL_PID_SETTINGS =
+            new PIDSettings(KP_LOW_LEVEL, KI_LOW_LEVEL, KD_LOW_LEVEL, TOLERANCE_LOW_LEVEL, WAIT_TIME_LOW_LEVEL);
+
+    public static final PIDSettings HIGH_LEVEL_PID_SETTINGS =
+            new PIDSettings(KP_HIGH_LEVEL, KI_HIGH_LEVEL, KD_HIGH_LEVEL, TOLERANCE_HIGH_LEVEL, WAIT_TIME_HIGH_LEVEL);
 
     private Gearbox gearbox;
 
