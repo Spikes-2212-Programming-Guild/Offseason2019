@@ -11,9 +11,8 @@ public class Latch extends Subsystem {
 
     public static final Namespace LATCH_NAMESPACE = ConstantHandler.addNamespace("Latch");
 
-    public static final Supplier<Double> OPEN_ANGLE = LATCH_NAMESPACE.addConstantDouble("Open Angle", 0.0);
-    public static final Supplier<Double> CLOSE_ANGLE = LATCH_NAMESPACE.addConstantDouble("Close Angle", 100.0);
-
+    public static final Supplier<Double> OPEN_ANGLE = LATCH_NAMESPACE.addConstantDouble("Open Angle", 45.0);
+    public static final Supplier<Double> CLOSE_ANGLE = LATCH_NAMESPACE.addConstantDouble("Close Angle", 0.0);
     private Servo servo;
     public Latch(Servo servo){
         this.servo = servo;
@@ -33,6 +32,5 @@ public class Latch extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
     }
 }
