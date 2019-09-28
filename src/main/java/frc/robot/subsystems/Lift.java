@@ -13,12 +13,19 @@ import java.util.function.Supplier;
 public class Lift extends GenericSubsystem {
     public static final Namespace namespace = ConstantHandler.addNamespace("Lift");
     public static final Namespace lowPIDNamespace = namespace.addChild("LowPID");
+    public static final Namespace highPIDNamespace = namespace.addChild("HighPID");
 
-    public static final Supplier<Double> KP_LOW = lowPIDNamespace.addConstantDouble("KP_LOW", 1);
-    public static final Supplier<Double> KI_LOW = lowPIDNamespace.addConstantDouble("KI_LOW", 1);
-    public static final Supplier<Double> KD_LOW = lowPIDNamespace.addConstantDouble("KD_LOW", 1);
+    public static final Supplier<Double> KP_LOW = lowPIDNamespace.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_LOW = lowPIDNamespace.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_LOW = lowPIDNamespace.addConstantDouble("KD", 1);
     public static final Supplier<Double> TOLERANCE_LOW = lowPIDNamespace.addConstantDouble("Tolerance", 1);
     public static final Supplier<Double> WAIT_TIME_LOW = lowPIDNamespace.addConstantDouble("Wait Time", 1);
+
+    public static final Supplier<Double> KP_HIGH = lowPIDNamespace.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_HIGH = lowPIDNamespace.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_HIGH = lowPIDNamespace.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_HIGH = lowPIDNamespace.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_HIGH = lowPIDNamespace.addConstantDouble("Wait Time", 1);
 
     private Gearbox gearbox;
 
