@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class Gripper extends GenericSubsystem {
 
     public static Supplier<Double> IN_SPEED = ConstantHandler.addConstantDouble("gripper in speed", -0.7);
-    public static Supplier<Double> OUT_SPEED = ConstantHandler.addConstantDouble("gripper out speed", -0.7);
+    public static Supplier<Double> OUT_SPEED = ConstantHandler.addConstantDouble("gripper out speed", 0.7);
 
     SpeedControllerGroup gripperSC = new SpeedControllerGroup
             (new WPI_TalonSRX(RobotMap.PWM.GRIPPER_RIGHT),
