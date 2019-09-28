@@ -40,6 +40,10 @@ public class Lift extends GenericSubsystem {
         return true;
     }
 
+    public boolean isDown() {
+        return bottomLimit.get();
+    }
+
     @Override
     public void stop() {
         gearbox.set(0);
