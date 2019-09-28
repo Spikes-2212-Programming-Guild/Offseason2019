@@ -7,6 +7,12 @@
 
 package frc.robot;
 
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
+import com.spikes2212.utils.RunnableCommand;
+import com.spikes2212.utils.XboXUID;
+import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.subsystem.Gripper;
+
 import com.spikes2212.utils.XboXUID;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.latch.LatchClose;
@@ -20,7 +26,11 @@ public class OI {
     private XboXUID xbox = new XboXUID(2);
     private Button openLatch=xbox.getLBButton();
     private Button closeLatch=xbox.getLTButton();
+    private Button gripperIn= xbox.getRBButton();
+    private Button gripperOut= xbox.getRTButton();
     public OI(){
+        gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
+        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper,Gripper.OUT_SPEED));
         openLatch.whenPressed(new LatchOpen());
         closeLatch.whenPressed(new LatchClose());
     }
