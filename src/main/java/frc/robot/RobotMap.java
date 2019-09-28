@@ -13,6 +13,7 @@ public class RobotMap {
         int LIFT_MASTER = 0;
         int LIFT_SLAVE_0 = 2;
         int LIFT_SLAVE_1 = 3;
+        int LIFT_ENCODER = 8;
     }
 
     public static interface DIO {
