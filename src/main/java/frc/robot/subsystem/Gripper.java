@@ -14,8 +14,8 @@ public class Gripper extends GenericSubsystem {
 
     private DigitalInput limit;
     private SpeedControllerGroup motor;
-    public Gripper(SpeedControllerGroup gripperSC, DigitalInput gripperLimit){
-           this.motor = gripperSC;
+    public Gripper(SpeedControllerGroup motor, DigitalInput gripperLimit){
+           this.motor = motor;
             this.limit = gripperLimit;
     }
     @Override

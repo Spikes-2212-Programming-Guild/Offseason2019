@@ -8,10 +8,10 @@ import frc.robot.subsystem.Gripper;
 
 public class SubsystemFactory {
     public static GenericSubsystem createGripper() {
-        SpeedControllerGroup gripperSC = new SpeedControllerGroup
+        SpeedControllerGroup motor = new SpeedControllerGroup
                 (new VictorSP(RobotMap.PWM.GRIPPER_LEFT), new VictorSP(RobotMap.PWM.GRIPPER_RIGHT));
         DigitalInput limit = new DigitalInput(RobotMap.DIO.limitSwitch);
-        return new Gripper(gripperSC, limit);
+        return new Gripper(motor, limit);
     }
 
 }
