@@ -17,13 +17,13 @@ public class OI /* GEVALD! */ {
 
     }
     public static double getLeftX(){
-        return -leftJoystick.getX();
+        return leftJoystick.getX();
     }
     public static double getLeftY(){
         return -leftJoystick.getY();
     }
     public static double getRightX() {
-        return -rightJoystick.getX();
+        return rightJoystick.getX();
     }
     public static double getRightY() {
         return -rightJoystick.getY();
