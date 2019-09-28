@@ -10,10 +10,10 @@ package frc.robot;
 
 public class RobotMap {
     public interface PWM{
-        int GRIPPER_RIGHT=1;
-        int GRIPPER_LEFT=2;
+        int GRIPPER_RIGHT=0;
+        int GRIPPER_LEFT=1;
     }
     public interface DIO{
-        int limitSwitch=1;
+        int LIMIT_SWITCH =6;
     }
 }

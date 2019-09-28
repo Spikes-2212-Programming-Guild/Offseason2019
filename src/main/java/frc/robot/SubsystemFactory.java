@@ -10,7 +10,7 @@ public class SubsystemFactory {
     public static GenericSubsystem createGripper() {
         SpeedControllerGroup motor = new SpeedControllerGroup
                 (new VictorSP(RobotMap.PWM.GRIPPER_LEFT), new VictorSP(RobotMap.PWM.GRIPPER_RIGHT));
-        DigitalInput limit = new DigitalInput(RobotMap.DIO.limitSwitch);
+        DigitalInput limit = new DigitalInput(RobotMap.DIO.LIMIT_SWITCH);
         return new Gripper(motor, limit);
     }
 
