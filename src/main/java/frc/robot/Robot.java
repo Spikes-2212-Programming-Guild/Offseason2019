@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.spikes2212.command.drivetrains.TankDrivetrain;
+import com.spikes2212.command.drivetrains.commands.DriveArcade;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +18,8 @@ import frc.robot.subsystems.Lift;
 public class Robot extends TimedRobot {
 
   public static OI oi;
+  public static TankDrivetrain drivetrain;
+
   public static GenericSubsystem gripper;
   public static Lift lift;
   public static Latch latch;
@@ -24,8 +28,14 @@ public class Robot extends TimedRobot {
     gripper= SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
     latch=SubsystemFactory.createLatch();
+    drivetrain=SubsystemFactory.createDrivetrain();
     oi = new OI();
   }
+
+  public void setDefaultCommand(){
+    drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
+  }
+
   @Override
   public void robotPeriodic() {
   }

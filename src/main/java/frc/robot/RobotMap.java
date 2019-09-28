@@ -9,6 +9,16 @@ package frc.robot;
 
 
 public class RobotMap {
+    public interface CAN{
+        int DRIVETRAIN_TALON_LEFT =5;
+        int DRIVETRAIN_TALON_RIGHT =4;
+        int DRIVETRAIN_VICTOR_LEFT =6;
+        int DRIVETRAIN_VICTOR_RIGHT =1;
+        int LIFT_MASTER = 0;
+        int LIFT_SLAVE_0 = 2;
+        int LIFT_SLAVE_1 = 3;
+        int LIFT_ENCODER = 8;
+    }
     public interface PWM{
         int LATCH_SERVO=9;
         int GRIPPER_RIGHT=0;
@@ -19,10 +29,5 @@ public class RobotMap {
         int LIFT_LIMIT_BOTTOM = 8;
         int LIFT_LIMIT_TOP = 9;
     }
-    public interface CAN {
-        int LIFT_MASTER = 0;
-        int LIFT_SLAVE_0 = 2;
-        int LIFT_SLAVE_1 = 3;
-        int LIFT_ENCODER = 8;
-    }
+
 }
