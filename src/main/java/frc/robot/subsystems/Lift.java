@@ -4,6 +4,7 @@ import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.Namespace;
+import com.spikes2212.utils.PIDSettings;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.lift.LowerLift;
