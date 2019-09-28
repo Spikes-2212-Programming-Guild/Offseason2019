@@ -1,13 +1,9 @@
 package frc.robot.subsystem;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.dashboard.ConstantHandler;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
-import frc.robot.RobotMap;
 
 import java.util.function.Supplier;
 
@@ -17,14 +13,14 @@ public class Gripper extends GenericSubsystem {
     private static Supplier<Double> OUT_SPEED = ConstantHandler.addConstantDouble("gripper out speed", 0.7);
 
     DigitalInput limit;
-    SpeedControllerGroup gripperSC;
+    SpeedControllerGroup motor;
     public Gripper(SpeedControllerGroup gripperSC, DigitalInput gripperLimit){
-           this.gripperSC = gripperSC;
+           this.motor = gripperSC;
             this.limit = gripperLimit;
     }
     @Override
     public void apply(double v) {
-        gripperSC.set(v);
+        motor.set(v);
     }
 
     @Override
@@ -37,7 +33,7 @@ public class Gripper extends GenericSubsystem {
 
     @Override
     public void stop() {
-        gripperSC.stopMotor();
+        motor.stopMotor();
     }
 
     @Override
