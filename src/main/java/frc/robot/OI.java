@@ -7,15 +7,40 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
+import com.spikes2212.utils.RunnableCommand;
+import com.spikes2212.utils.XboXUID;
+import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.subsystem.Gripper;
 
-public class OI /* GEVALD! */ {
+import com.spikes2212.utils.XboXUID;
+import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.latch.LatchClose;
+import frc.robot.commands.latch.LatchOpen;
+import edu.wpi.first.wpilibj.Joystick;
+/**
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
+ */
+public class OI {
+    private XboXUID xbox = new XboXUID(2);
+    private Button openLatch=xbox.getLBButton();
+    private Button closeLatch=xbox.getLTButton();
+    private Button gripperIn= xbox.getRBButton();
+    private Button gripperOut= xbox.getRTButton();
+    public OI(){
+        gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
+        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper,Gripper.OUT_SPEED));
+        openLatch.whenPressed(new LatchOpen());
+        closeLatch.whenPressed(new LatchClose());
+    }
+
+
+
     private static Joystick leftJoystick=new Joystick(0);
     private static Joystick rightJoystick=new Joystick(2);
 
-    public OI(){
 
-    }
     public static double getLeftX(){
         return leftJoystick.getX();
     }
