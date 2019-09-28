@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.motor.Gearbox;
+import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Lift extends GenericSubsystem {
@@ -11,10 +12,13 @@ public class Lift extends GenericSubsystem {
     DigitalInput topLimit;
     DigitalInput bottomLimit;
 
-    public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit) {
+    TalonSRXEncoder encoder;
+
+    public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit, TalonSRXEncoder encoder) {
         this.gearbox = gearbox;
         this.topLimit = topLimit;
         this.bottomLimit = bottomLimit;
+        this.encoder = encoder;
     }
 
     @Override
@@ -38,6 +42,10 @@ public class Lift extends GenericSubsystem {
     @Override
     public void stop() {
         gearbox.set(0);
+    }
+
+    public boolean isDown() {
+        return bottomLimit.get();
     }
 
     @Override
