@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 
 public class Gripper extends GenericSubsystem {
 
-    private static Supplier<Double> IN_SPEED = ConstantHandler.addConstantDouble("gripper in speed", -0.7);
-    private static Supplier<Double> OUT_SPEED = ConstantHandler.addConstantDouble("gripper out speed", 0.7);
+    public static Supplier<Double> IN_SPEED = ConstantHandler.addConstantDouble("gripper in speed", -0.7);
+    public static Supplier<Double> OUT_SPEED = ConstantHandler.addConstantDouble("gripper out speed", 0.7);
 
-    DigitalInput limit;
-    SpeedControllerGroup motor;
+    private DigitalInput limit;
+    private SpeedControllerGroup motor;
     public Gripper(SpeedControllerGroup gripperSC, DigitalInput gripperLimit){
            this.motor = gripperSC;
             this.limit = gripperLimit;
