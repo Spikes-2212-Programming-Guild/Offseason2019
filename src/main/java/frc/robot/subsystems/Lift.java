@@ -1,18 +1,31 @@
 package frc.robot.subsystems;
 
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
+import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.motor.Gearbox;
+import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.lift.LowerLift;
 
+import java.util.function.Supplier;
+
 public class Lift extends GenericSubsystem {
-    Gearbox gearbox;
+    public static final Namespace namespace = ConstantHandler.addNamespace("Lift");
+    public static final Namespace lowPIDNamespace = namespace.addChild("LowPID");
 
-    DigitalInput topLimit;
-    DigitalInput bottomLimit;
+    public static final Supplier<Double> KP_LOW = lowPIDNamespace.addConstantDouble("KP_LOW", 1);
+    public static final Supplier<Double> KI_LOW = lowPIDNamespace.addConstantDouble("KI_LOW", 1);
+    public static final Supplier<Double> KD_LOW = lowPIDNamespace.addConstantDouble("KD_LOW", 1);
+    public static final Supplier<Double> TOLERANCE_LOW = lowPIDNamespace.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_LOW = lowPIDNamespace.addConstantDouble("Wait Time", 1);
 
-    TalonSRXEncoder encoder;
+    private Gearbox gearbox;
+
+    private DigitalInput topLimit;
+    private DigitalInput bottomLimit;
+
+    private TalonSRXEncoder encoder;
 
     public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit, TalonSRXEncoder encoder) {
         this.gearbox = gearbox;
