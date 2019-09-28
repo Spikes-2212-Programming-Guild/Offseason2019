@@ -9,6 +9,6 @@ import frc.robot.subsystems.Lift;
 public class RaiseLiftHigh extends MoveGenericSubsystemWithPID {
     public RaiseLiftHigh(double setpoint) {
         super(Robot.lift, Robot.lift.getEncoder(), setpoint,
-                new PIDSettings(Lift.KP_HIGH, Lift.KI_HIGH, Lift.KD_HIGH, Lift.TOLERANCE_HIGH, Lift.WAIT_TIME_HIGH));
+                Lift.HIGH_LEVEL_PID_SETTINGS);
     }
 }
