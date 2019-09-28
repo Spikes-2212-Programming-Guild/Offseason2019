@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   }
 
   public void setDefaultCommand(){
-    drivetrain.setDefaultCommand(new DriveArcade(drivetrain, ()->OI.getRightY(),()->OI.getLeftX()));
+    drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
   }
 
   @Override
