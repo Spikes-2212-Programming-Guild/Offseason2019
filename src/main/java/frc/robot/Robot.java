@@ -28,8 +28,8 @@ public class Robot extends TimedRobot {
     gripper= SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
     latch=SubsystemFactory.createLatch();
-    oi = new OI();
     drivetrain=SubsystemFactory.createDrivetrain();
+    oi = new OI();
   }
 
   public void setDefaultCommand(){

@@ -28,17 +28,14 @@ public class OI {
     private Button closeLatch=xbox.getLTButton();
     private Button gripperIn= xbox.getRBButton();
     private Button gripperOut= xbox.getRTButton();
-    public OI(){
+    private static Joystick leftJoystick=new Joystick(0);
+    private static Joystick rightJoystick=new Joystick(2);
+    public OI() {
         gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
-        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper,Gripper.OUT_SPEED));
+        gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.OUT_SPEED));
         openLatch.whenPressed(new LatchOpen());
         closeLatch.whenPressed(new LatchClose());
     }
-
-
-
-    private static Joystick leftJoystick=new Joystick(0);
-    private static Joystick rightJoystick=new Joystick(2);
 
 
     public static double getLeftX(){
