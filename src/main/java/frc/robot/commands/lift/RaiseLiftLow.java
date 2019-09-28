@@ -7,8 +7,8 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Lift;
 
 public class RaiseLiftLow extends MoveGenericSubsystemWithPID {
-    public RaiseLiftLow(PIDSource source, double setpoint) {
-        super(Robot.lift, source, setpoint,
+    public RaiseLiftLow(double setpoint) {
+        super(Robot.lift, Robot.lift.getEncoder(), setpoint,
                 new PIDSettings(Lift.KP_LOW, Lift.KI_LOW, Lift.KD_LOW, Lift.TOLERANCE_LOW, Lift.WAIT_TIME_LOW));
     }
 }
