@@ -10,7 +10,7 @@ package frc.robot;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.subsystems.Latch;
 import frc.robot.subsystems.Lift;
 
 public class Robot extends TimedRobot {
@@ -18,12 +18,13 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static GenericSubsystem gripper;
   public static Lift lift;
-
+  public static Latch latch;
   @Override
   public void robotInit() {
-    oi = new OI();
     gripper= SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
+    latch=SubsystemFactory.createLatch();
+    oi = new OI();
   }
   @Override
   public void robotPeriodic() {

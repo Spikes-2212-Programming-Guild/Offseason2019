@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.subsystem.Gripper;
 import frc.robot.subsystems.Lift;
 
+import edu.wpi.first.wpilibj.Servo;
+import frc.robot.subsystems.Latch;
+
 public class SubsystemFactory {
     public static GenericSubsystem createGripper() {
         SpeedControllerGroup motor = new SpeedControllerGroup
@@ -30,6 +33,12 @@ public class SubsystemFactory {
 
         return new Lift(gearbox, topLimit, bottomLimit, encoder);
     }
+    public static Latch createLatch(){
+        Servo latchServo=new Servo(RobotMap.PWM.LATCH_SERVO);
+        Latch latch=new Latch(latchServo);
+        return latch;
+    }
+
 }
 
 
