@@ -16,7 +16,10 @@ public class Lift extends GenericSubsystem {
     public static final Namespace lowPIDNamespace = namespace.addChild("LowPID");
     public static final Namespace highPIDNamespace = namespace.addChild("HighPID");
 
-    public static final Supplier<Double> PID_SWITCH_POINT = namespace.addConstantDouble("PID_SWITCH_POINT", 40);
+    public static final Supplier<Double> MAX_SPEED = namespace.addConstantDouble("Max Speed", 0.6);
+    public static final Supplier<Double> MIN_SPEED = namespace.addConstantDouble("Min Speed", -0.6);
+
+    public static final Supplier<Double> PID_SWITCH_POINT = namespace.addConstantDouble("PID Switch Point", 40);
 
     public static final Supplier<Double> KP_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KP", 1);
     public static final Supplier<Double> KI_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KI", 1);
@@ -44,6 +47,7 @@ public class Lift extends GenericSubsystem {
     private TalonSRXEncoder encoder;
 
     public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit, TalonSRXEncoder encoder) {
+        super(MIN_SPEED, MAX_SPEED);
         this.gearbox = gearbox;
         this.topLimit = topLimit;
         this.bottomLimit = bottomLimit;
