@@ -28,7 +28,7 @@ public class SubsystemFactory {
         leftMotor.setInverted(true);
 
         SpeedControllerGroup motor = new SpeedControllerGroup(leftMotor, rightMotor);
-        DigitalInput limit = new DigitalInput(RobotMap.DIO.LIMIT_SWITCH);
+        DigitalInput limit = new DigitalInput(RobotMap.DIO.GRIPPER_LIMIT);
         return new Gripper(motor, limit);
     }
     public static Lift createLift() {
