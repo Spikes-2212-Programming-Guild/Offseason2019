@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.*;
-import frc.robot.subsystem.Gripper;
+import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Lift;
 
