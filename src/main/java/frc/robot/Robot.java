@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.latch.LatchClose;
 import frc.robot.commands.latch.LatchOpen;
+import frc.robot.commands.lift.RaiseLift;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Latch;
@@ -29,16 +30,18 @@ public class Robot extends TimedRobot {
   public static GenericSubsystem gripper;
   public static Lift lift;
   public static Latch latch;
+
   @Override
   public void robotInit() {
-    gripper= SubsystemFactory.createGripper();
+    gripper = SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
-    latch=SubsystemFactory.createLatch();
-    drivetrain=SubsystemFactory.createDrivetrain();
+    latch = SubsystemFactory.createLatch();
+    drivetrain = SubsystemFactory.createDrivetrain();
     oi = new OI();
 
-   testGripper();
-   testLatch();
+    testGripper();
+    testLatch();
+    testLift();
   }
 
   public void testGripper() {
@@ -51,7 +54,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("latch/close", new LatchClose());
   }
 
-  public void setDefaultCommand(){
+  public void testLift() {
+    SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
+    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
+  }
+
+  public void setDefaultCommand() {
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
   }
 
@@ -71,6 +79,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
   }
+
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
