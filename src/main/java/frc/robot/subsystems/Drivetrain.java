@@ -16,5 +16,11 @@ public class Drivetrain extends TankDrivetrain {
         this.leftEncoder = leftEncoder;
         this.rightEncoder = rightEncoder;
         this.gyro = gyro;
+
+        addChild(left);
+        addChild(right);
+        addChild(leftEncoder);
+        addChild(rightEncoder);
+        addChild(gyro);
     }
 }

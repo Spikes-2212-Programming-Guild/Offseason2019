@@ -16,6 +16,8 @@ public class Latch extends Subsystem {
     private Servo servo;
     public Latch(Servo servo){
         this.servo = servo;
+
+        addChild(servo);
     }
     public void open(){
         servo.setAngle(OPEN_ANGLE.get());
