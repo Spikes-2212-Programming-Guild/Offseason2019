@@ -8,13 +8,10 @@
 package frc.robot;
 
 import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
-import com.spikes2212.utils.RunnableCommand;
 import com.spikes2212.utils.XboXUID;
 import edu.wpi.first.wpilibj.buttons.Button;
-import frc.robot.subsystem.Gripper;
+import frc.robot.subsystems.Gripper;
 
-import com.spikes2212.utils.XboXUID;
-import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.latch.LatchClose;
 import frc.robot.commands.latch.LatchOpen;
 import edu.wpi.first.wpilibj.Joystick;
