@@ -28,6 +28,10 @@ public class RobotMap {
         int LIMIT_SWITCH =6;
         int LIFT_LIMIT_BOTTOM = 8;
         int LIFT_LIMIT_TOP = 9;
+        int DRIVETRAIN_ENCODER_LEFT_A = 0;
+        int DRIVETRAIN_ENCODER_LEFT_B = 1;
+        int DRIVETRAIN_ENCODER_RIGHT_A = 2;
+        int DRIVETRAIN_ENCODER_RIGHT_B = 3;
     }
 
 }
