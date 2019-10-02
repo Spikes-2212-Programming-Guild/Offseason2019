@@ -26,8 +26,8 @@ public class RobotMap {
     }
     public interface DIO{
         int LIMIT_SWITCH =8;
-        int LIFT_LIMIT_BOTTOM = 6;
-        int LIFT_LIMIT_TOP = 9;
+        int LIFT_LIMIT_BOTTOM = 9;
+        int LIFT_LIMIT_TOP = 7;
         int DRIVETRAIN_ENCODER_LEFT_A = 0;
         int DRIVETRAIN_ENCODER_LEFT_B = 1;
         int DRIVETRAIN_ENCODER_RIGHT_A = 2;

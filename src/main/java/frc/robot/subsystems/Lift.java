@@ -17,6 +17,8 @@ public class Lift extends GenericSubsystem {
     public static final Namespace HIGH_PID_NAMESPACE = NAMESPACE.addChild("HighPID");
 
     public static final Supplier<Double> TEST_SPEED = NAMESPACE.addConstantDouble("Test Speed", 0.6);
+    public static final Supplier<Double> TEST_SETPOINT = NAMESPACE.addConstantDouble("Test Setpoint", 70);
+
     public static final Supplier<Double> MAX_SPEED = NAMESPACE.addConstantDouble("Max Speed", 0.6);
     public static final Supplier<Double> MIN_SPEED = NAMESPACE.addConstantDouble("Min Speed", -0.6);
     public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
