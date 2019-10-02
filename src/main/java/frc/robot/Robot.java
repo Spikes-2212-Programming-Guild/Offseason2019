@@ -29,16 +29,17 @@ public class Robot extends TimedRobot {
   public static GenericSubsystem gripper;
   public static Lift lift;
   public static Latch latch;
+
   @Override
   public void robotInit() {
-    gripper= SubsystemFactory.createGripper();
+    gripper = SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
-    latch=SubsystemFactory.createLatch();
-    drivetrain=SubsystemFactory.createDrivetrain();
+    latch = SubsystemFactory.createLatch();
+    drivetrain = SubsystemFactory.createDrivetrain();
     oi = new OI();
 
-   testGripper();
-   testLatch();
+    testGripper();
+    testLatch();
   }
 
   public void testGripper() {
@@ -51,7 +52,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("latch/close", new LatchClose());
   }
 
-  public void setDefaultCommand(){
+  public void testLift() {
+    SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
+  }
+
+  public void setDefaultCommand() {
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
   }
 
@@ -71,6 +76,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
   }
+
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
