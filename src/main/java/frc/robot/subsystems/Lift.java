@@ -12,27 +12,27 @@ import frc.robot.commands.lift.LowerLift;
 import java.util.function.Supplier;
 
 public class Lift extends GenericSubsystem {
-    public static final Namespace namespace = ConstantHandler.addNamespace("Lift");
-    public static final Namespace lowPIDNamespace = namespace.addChild("LowPID");
-    public static final Namespace highPIDNamespace = namespace.addChild("HighPID");
+    public static final Namespace NAMESPACE = ConstantHandler.addNamespace("Lift");
+    public static final Namespace LOW_PID_NAMESPACE = NAMESPACE.addChild("LowPID");
+    public static final Namespace HIGH_PID_NAMESPACE = NAMESPACE.addChild("HighPID");
 
-    public static final Supplier<Double> MAX_SPEED = namespace.addConstantDouble("Max Speed", 0.6);
-    public static final Supplier<Double> MIN_SPEED = namespace.addConstantDouble("Min Speed", -0.6);
-    public static final Supplier<Double> DISTANCE_PER_PULSE = namespace.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
+    public static final Supplier<Double> MAX_SPEED = NAMESPACE.addConstantDouble("Max Speed", 0.6);
+    public static final Supplier<Double> MIN_SPEED = NAMESPACE.addConstantDouble("Min Speed", -0.6);
+    public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
-    public static final Supplier<Double> PID_SWITCH_POINT = namespace.addConstantDouble("PID Switch Point", 40);
+    public static final Supplier<Double> PID_SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
 
-    public static final Supplier<Double> KP_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_LOW_LEVEL = lowPIDNamespace.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_LOW_LEVEL = lowPIDNamespace.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_LOW_LEVEL = lowPIDNamespace.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
-    public static final Supplier<Double> KP_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_HIGH_LEVEL = highPIDNamespace.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_HIGH_LEVEL = highPIDNamespace.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_HIGH_LEVEL = highPIDNamespace.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
     public static final PIDSettings LOW_LEVEL_PID_SETTINGS =
             new PIDSettings(KP_LOW_LEVEL, KI_LOW_LEVEL, KD_LOW_LEVEL, TOLERANCE_LOW_LEVEL, WAIT_TIME_LOW_LEVEL);

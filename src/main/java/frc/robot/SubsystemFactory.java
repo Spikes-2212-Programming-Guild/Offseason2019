@@ -1,28 +1,26 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.motor.Gearbox;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
-import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.TalonSRXEncoder;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
-import frc.robot.subsystem.Gripper;
+import edu.wpi.first.wpilibj.*;
+import frc.robot.subsystems.Gripper;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Lift;
 
-import edu.wpi.first.wpilibj.Servo;
 import frc.robot.subsystems.Latch;
 
 public class SubsystemFactory {
-    public static TankDrivetrain createDrivetrain(){
+    public static Drivetrain createDrivetrain(){
         Gearbox leftGearbox=new Gearbox(RobotMap.CAN.DRIVETRAIN_TALON_LEFT,new WPI_VictorSPX(RobotMap.CAN.DRIVETRAIN_VICTOR_LEFT));
         Gearbox rightGearbox=new Gearbox(RobotMap.CAN.DRIVETRAIN_TALON_RIGHT,new WPI_VictorSPX(RobotMap.CAN.DRIVETRAIN_VICTOR_RIGHT));
-        return new TankDrivetrain(leftGearbox,rightGearbox);
+        Encoder leftEncoder = new Encoder(RobotMap.DIO.DRIVETRAIN_ENCODER_LEFT_A, RobotMap.DIO.DRIVETRAIN_ENCODER_LEFT_B);
+        Encoder rightEncoder = new Encoder(RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_A, RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_B);
+        return new Drivetrain(leftGearbox, rightGearbox, leftEncoder, rightEncoder, new ADXRS450_Gyro());
     }
     public static GenericSubsystem createGripper() {
         SpeedControllerGroup motor = new SpeedControllerGroup
@@ -49,5 +47,3 @@ public class SubsystemFactory {
     }
 
 }
-
-
