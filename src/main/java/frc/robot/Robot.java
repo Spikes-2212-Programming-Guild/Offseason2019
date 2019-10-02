@@ -37,8 +37,8 @@ public class Robot extends TimedRobot {
     drivetrain=SubsystemFactory.createDrivetrain();
     oi = new OI();
 
-//    testGripper();
-//    testLatch();
+   testGripper();
+   testLatch();
   }
 
   public void testGripper() {

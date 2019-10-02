@@ -23,8 +23,11 @@ public class SubsystemFactory {
         return new Drivetrain(leftGearbox, rightGearbox, leftEncoder, rightEncoder, new ADXRS450_Gyro());
     }
     public static GenericSubsystem createGripper() {
-        SpeedControllerGroup motor = new SpeedControllerGroup
-                (new VictorSP(RobotMap.PWM.GRIPPER_LEFT), new VictorSP(RobotMap.PWM.GRIPPER_RIGHT));
+        VictorSP leftMotor = new VictorSP(RobotMap.PWM.GRIPPER_LEFT);
+        VictorSP rightMotor = new VictorSP(RobotMap.PWM.GRIPPER_RIGHT);
+        leftMotor.setInverted(true);
+
+        SpeedControllerGroup motor = new SpeedControllerGroup(leftMotor, rightMotor);
         DigitalInput limit = new DigitalInput(RobotMap.DIO.LIMIT_SWITCH);
         return new Gripper(motor, limit);
     }

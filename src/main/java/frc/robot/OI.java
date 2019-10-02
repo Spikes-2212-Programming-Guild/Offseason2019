@@ -26,7 +26,7 @@ public class OI {
     private Button gripperIn= xbox.getRBButton();
     private Button gripperOut= xbox.getRTButton();
     private static Joystick leftJoystick=new Joystick(0);
-    private static Joystick rightJoystick=new Joystick(2);
+    private static Joystick rightJoystick=new Joystick(1);
     public OI() {
         gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
         gripperOut.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.OUT_SPEED));
