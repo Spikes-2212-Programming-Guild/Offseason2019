@@ -18,6 +18,7 @@ public class Lift extends GenericSubsystem {
 
     public static final Supplier<Double> MAX_SPEED = namespace.addConstantDouble("Max Speed", 0.6);
     public static final Supplier<Double> MIN_SPEED = namespace.addConstantDouble("Min Speed", -0.6);
+    public static final Supplier<Double> DISTANCE_PER_PULSE = namespace.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
     public static final Supplier<Double> PID_SWITCH_POINT = namespace.addConstantDouble("PID Switch Point", 40);
 
