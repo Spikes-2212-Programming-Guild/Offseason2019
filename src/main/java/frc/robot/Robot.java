@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
 
     testGripper();
     testLatch();
+    testLift();
   }
 
   public void testGripper() {
