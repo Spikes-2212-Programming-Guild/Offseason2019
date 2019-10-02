@@ -32,9 +32,14 @@ public class SubsystemFactory {
         return new Gripper(motor, limit);
     }
     public static Lift createLift() {
+        WPI_TalonSRX slave0 = new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_0);
+        WPI_TalonSRX slave1 = new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_1);
+
         Gearbox gearbox = new Gearbox(RobotMap.CAN.LIFT_MASTER,
-                new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_0), new WPI_TalonSRX(RobotMap.CAN.LIFT_SLAVE_1));
+                slave0, slave1);
         gearbox.setNeutralMode(NeutralMode.Brake);
+        slave0.setNeutralMode(NeutralMode.Brake);
+        slave1.setNeutralMode(NeutralMode.Brake);
 
         DigitalInput bottomLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_BOTTOM);
         DigitalInput topLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_TOP);
