@@ -44,7 +44,9 @@ public class SubsystemFactory {
         DigitalInput bottomLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_BOTTOM);
         DigitalInput topLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_TOP);
 
-        TalonSRXEncoder encoder = new TalonSRXEncoder(new WPI_TalonSRX(RobotMap.CAN.LIFT_ENCODER), Lift.DISTANCE_PER_PULSE.get());
+        TalonSRXEncoder encoder = new TalonSRXEncoder(new WPI_TalonSRX(RobotMap.CAN.LIFT_ENCODER), -1.0/1024);
+        encoder.setPIDSourceType(PIDSourceType.kDisplacement);
+        encoder.reset();
 
         return new Lift(gearbox, topLimit, bottomLimit, encoder);
     }
