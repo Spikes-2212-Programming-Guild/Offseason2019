@@ -8,11 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.*;
-import frc.robot.subsystems.Gripper;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Lift;
-
-import frc.robot.subsystems.Latch;
+import frc.robot.subsystems.*;
 
 public class SubsystemFactory {
     public static Drivetrain createDrivetrain(){
@@ -52,6 +48,15 @@ public class SubsystemFactory {
         Servo latchServo=new Servo(RobotMap.PWM.LATCH_SERVO);
         Latch latch=new Latch(latchServo);
         return latch;
+    }
+    public static Arm createArm(){
+        VictorSP motor1=new VictorSP(RobotMap.PWM.ARM_MOTOR1);
+        VictorSP motor2=new VictorSP(RobotMap.PWM.ARM_MOTOR2);
+        SpeedControllerGroup ArmMotor=new SpeedControllerGroup(motor1,motor2);
+        AnalogPotentiometer potentiometer=new AnalogPotentiometer(RobotMap.ANALOG.ARM_POTENTIOMETER);
+        DigitalInput limitBack=new DigitalInput(RobotMap.DIO.ARM_BACK_LIMIT);
+        DigitalInput limitFront=new DigitalInput(RobotMap.DIO.ARM_FRONT_LIMIT);
+        return new Arm(ArmMotor,limitBack,limitFront,potentiometer);
     }
 
 }

@@ -17,10 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.latch.LatchClose;
 import frc.robot.commands.latch.LatchOpen;
 import frc.robot.commands.lift.RaiseLift;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Gripper;
-import frc.robot.subsystems.Latch;
-import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.*;
 
 public class Robot extends TimedRobot {
 
@@ -30,6 +27,7 @@ public class Robot extends TimedRobot {
   public static GenericSubsystem gripper;
   public static Lift lift;
   public static Latch latch;
+  public static Arm arm;
 
   @Override
   public void robotInit() {
@@ -37,6 +35,7 @@ public class Robot extends TimedRobot {
     lift = SubsystemFactory.createLift();
     latch = SubsystemFactory.createLatch();
     drivetrain = SubsystemFactory.createDrivetrain();
+    arm=SubsystemFactory.createArm();
     oi = new OI();
 
     testGripper();
