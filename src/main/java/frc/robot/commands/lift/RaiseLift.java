@@ -9,8 +9,7 @@ import frc.robot.subsystems.Lift;
 public class RaiseLift extends CommandGroup {
     public RaiseLift(double setpoint) {
         addSequential(new SetLiftState(Lift.LiftState.UP));
-        addSequential(new MoveGenericSubsystemWithPID(Robot.lift, Robot.lift.getEncoder(),
-                Math.min(setpoint, Lift.SWITCH_POINT.get()), Robot.lift.UP_PID_SETTINGS));
+        addSequential(new MoveGenericSubsystemWithPID(Robot.lift, Robot.lift.getEncoder(), setpoint, Robot.lift.UP_PID_SETTINGS));
         addSequential(new SetLiftState(Lift.LiftState.STILL));
         addSequential(new MoveGenericSubsystem(Robot.lift, Lift.STAYING_SPEED));
     }
