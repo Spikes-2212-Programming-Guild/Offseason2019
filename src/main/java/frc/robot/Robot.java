@@ -7,16 +7,9 @@
 
 package frc.robot;
 
-import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
-import com.spikes2212.command.genericsubsystem.GenericSubsystem;
-import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.latch.LatchClose;
-import frc.robot.commands.latch.LatchOpen;
-import frc.robot.commands.lift.RaiseLift;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Latch;

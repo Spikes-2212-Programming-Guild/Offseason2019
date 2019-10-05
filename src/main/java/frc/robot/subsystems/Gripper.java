@@ -7,7 +7,6 @@ import com.spikes2212.utils.Namespace;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 
 import java.util.function.Supplier;
 
