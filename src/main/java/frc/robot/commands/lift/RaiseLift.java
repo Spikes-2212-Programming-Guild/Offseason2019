@@ -6,8 +6,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.subsystems.Lift;
 
+import java.util.function.Supplier;
+
 public class RaiseLift extends CommandGroup {
-    public RaiseLift(double setpoint) {
+    public RaiseLift(Supplier<Double> setpoint) {
         addSequential(new SetLiftState(Lift.LiftState.UP));
         addSequential(new MoveGenericSubsystemWithPID(Robot.lift, Robot.lift.getEncoder(), setpoint, Robot.lift.UP_PID_SETTINGS));
         addSequential(new SetLiftState(Lift.LiftState.STILL));
