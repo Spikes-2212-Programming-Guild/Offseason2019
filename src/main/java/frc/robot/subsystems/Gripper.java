@@ -12,8 +12,8 @@ public class Gripper extends GenericSubsystem {
 
     public static final Namespace NAMESPACE = ConstantHandler.addNamespace("Gripper");
 
-    public static final Supplier<Double> IN_SPEED = NAMESPACE.addConstantDouble("gripper in speed", -0.7);
-    public static final Supplier<Double> OUT_SPEED = NAMESPACE.addConstantDouble("gripper out speed", 0.7);
+    public static final Supplier<Double> IN_SPEED = NAMESPACE.addConstantDouble("in speed", -0.7);
+    public static final Supplier<Double> OUT_SPEED = NAMESPACE.addConstantDouble("out speed", 0.7);
 
     private DigitalInput limit;
     private SpeedControllerGroup motor;
