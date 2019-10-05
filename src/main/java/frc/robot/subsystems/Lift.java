@@ -17,7 +17,7 @@ public class Lift extends GenericSubsystem {
     public static final Namespace HIGH_PID_NAMESPACE = NAMESPACE.addChild("HighPID");
 
     public static final Supplier<Double> TEST_SPEED = NAMESPACE.addConstantDouble("Test Speed", 0.6);
-    public static final Supplier<Double> TEST_SETPOINT = NAMESPACE.addConstantDouble("Test Setpoint", 70);
+    public static final Supplier<Double> TEST_SETPOINT = NAMESPACE.addConstantDouble("Test Setpoint", 40);
 
     public static final Supplier<Double> MAX_SPEED = NAMESPACE.addConstantDouble("Max Speed", 0.6);
     public static final Supplier<Double> MIN_SPEED = NAMESPACE.addConstantDouble("Min Speed", -0.6);
@@ -97,5 +97,12 @@ public class Lift extends GenericSubsystem {
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new LowerLift());
+    }
+
+    @Override
+    public void periodic() {
+        if(bottomLimit.get() && encoder.pidGet() == 0) {
+            encoder.reset();
+        }
     }
 }

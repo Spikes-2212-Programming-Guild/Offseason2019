@@ -10,6 +10,7 @@ package frc.robot;
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
+import com.spikes2212.dashboard.DashBoardController;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,9 +28,11 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Drivetrain drivetrain;
 
-  public static GenericSubsystem gripper;
+  public static Gripper gripper;
   public static Lift lift;
   public static Latch latch;
+
+  public static DashBoardController dbc;
 
   @Override
   public void robotInit() {
@@ -38,6 +41,10 @@ public class Robot extends TimedRobot {
     latch = SubsystemFactory.createLatch();
     drivetrain = SubsystemFactory.createDrivetrain();
     oi = new OI();
+
+    dbc = new DashBoardController();
+
+    setDefaultCommands(); 
 
     testGripper();
     testLatch();
@@ -57,14 +64,17 @@ public class Robot extends TimedRobot {
   public void testLift() {
     SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
     SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
+
+    dbc.addNumber("lift/encoder value", lift.getEncoder()::pidGet);
   }
 
-  public void setDefaultCommand() {
+  public void setDefaultCommands() {
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
   }
 
   @Override
   public void robotPeriodic() {
+    dbc.update();
   }
 
   @Override

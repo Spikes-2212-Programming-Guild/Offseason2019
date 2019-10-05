@@ -22,7 +22,7 @@ public class SubsystemFactory {
         Encoder rightEncoder = new Encoder(RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_A, RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_B);
         return new Drivetrain(leftGearbox, rightGearbox, leftEncoder, rightEncoder, new ADXRS450_Gyro());
     }
-    public static GenericSubsystem createGripper() {
+    public static Gripper createGripper() {
         VictorSP leftMotor = new VictorSP(RobotMap.PWM.GRIPPER_LEFT);
         VictorSP rightMotor = new VictorSP(RobotMap.PWM.GRIPPER_RIGHT);
         leftMotor.setInverted(true);
