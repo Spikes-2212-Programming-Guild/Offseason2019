@@ -46,8 +46,8 @@ public class Gripper extends GenericSubsystem {
 
     @Override
     public void initTestingDashboard() {
-        SmartDashboard.putData("gripper/in", new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED.get()));
-        SmartDashboard.putData("gripper/out", new MoveGenericSubsystem(Robot.gripper, Gripper.OUT_SPEED.get()));
+        SmartDashboard.putData("gripper/in", new MoveGenericSubsystem(this, Gripper.IN_SPEED.get()));
+        SmartDashboard.putData("gripper/out", new MoveGenericSubsystem(this, Gripper.OUT_SPEED.get()));
     }
 
     @Override

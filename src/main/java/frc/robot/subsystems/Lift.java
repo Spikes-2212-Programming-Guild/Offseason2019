@@ -138,7 +138,7 @@ public class Lift extends GenericSubsystem {
 
     @Override
     public void initTestingDashboard() {
-        SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(Robot.lift, Lift.TEST_SPEED));
+        SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(this, Lift.TEST_SPEED));
         SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT));
     }
 
