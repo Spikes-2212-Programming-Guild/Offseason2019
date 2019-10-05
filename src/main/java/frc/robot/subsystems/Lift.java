@@ -70,9 +70,9 @@ public class Lift extends GenericSubsystem {
 
     @Override
     public boolean canMove(double v) {
-        if(v > 0 && topLimit.get())
+        if(v > 0 && isUp())
             return false;
-        else if(v < 0 && bottomLimit.get())
+        else if(v < 0 && isDown())
             return false;
         return true;
     }
