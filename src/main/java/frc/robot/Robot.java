@@ -54,11 +54,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("latch/close", new LatchClose());
   }
 
-  public void testLift() {
-    SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
-    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
-  }
-
   public void setDefaultCommand() {
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
   }
