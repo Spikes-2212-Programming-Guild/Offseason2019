@@ -9,15 +9,23 @@ package frc.robot;
 
 import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
+import com.spikes2212.command.drivetrains.commands.DriveTankWithPID;
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
+import com.spikes2212.dashboard.DashBoardController;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.latch.LatchClose;
 import frc.robot.commands.latch.LatchOpen;
 import frc.robot.commands.lift.RaiseLift;
-import frc.robot.subsystems.*;
+import frc.robot.commands.lift.SetLiftState;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Gripper;
+import frc.robot.subsystems.Latch;
+import frc.robot.subsystems.Lift;
 
 public class Robot extends TimedRobot {
 
@@ -29,18 +37,26 @@ public class Robot extends TimedRobot {
   public static Latch latch;
   public static Arm arm;
 
+  public static DashBoardController dbc;
+
   @Override
   public void robotInit() {
     gripper = SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
     latch = SubsystemFactory.createLatch();
     drivetrain = SubsystemFactory.createDrivetrain();
-    arm=SubsystemFactory.createArm();
+    arm = SubsystemFactory.createArm();
     oi = new OI();
+
+    setDefaultCommand();
+
+    dbc = new DashBoardController();
 
     testGripper();
     testLatch();
     testLift();
+    SmartDashboard.putData("drivetrain/drive tank with PID", new DriveTankWithPID(drivetrain, drivetrain.getLeftEncoder()
+    , drivetrain.getRightEncoder(), Drivetrain.TEST_SETPOINT, Drivetrain.TEST_SETPOINT, Drivetrain.FORWARD_PID_SETTINGS));
   }
 
   public void testGripper() {
@@ -55,7 +71,11 @@ public class Robot extends TimedRobot {
 
   public void testLift() {
     SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
-    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
+    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT));
+    SmartDashboard.putData("lift/setState Up", new SetLiftState(Lift.LiftState.UP));
+    SmartDashboard.putData("lift/setState Down", new SetLiftState(Lift.LiftState.DOWN));
+    dbc.addNumber("lift/encoder value", lift.getEncoder()::pidGet);
+    dbc.addString("lift/state", () -> lift.getState().name());
   }
 
   public void setDefaultCommand() {
@@ -64,6 +84,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    dbc.update();
   }
 
   @Override
@@ -86,6 +107,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    lift.getEncoder().reset();
+    drivetrain.getRightEncoder().reset();
+    drivetrain.getLeftEncoder().reset();
   }
 
   @Override
