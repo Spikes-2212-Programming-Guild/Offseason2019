@@ -1,12 +1,14 @@
 package frc.robot.subsystems;
 
 import com.spikes2212.command.drivetrains.TankDrivetrain;
+import com.spikes2212.command.drivetrains.commands.DriveArcade;
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.SpeedController;
+import frc.robot.OI;
 
 import java.util.function.Supplier;
 
@@ -60,5 +62,9 @@ public class Drivetrain extends TankDrivetrain {
 
     public GyroBase getGyro() {
         return gyro;
+    }
+
+    public void setDefaultCommand() {
+        setDefaultCommand(new DriveArcade(this, OI::getRightY, OI::getLeftX));
     }
 }
