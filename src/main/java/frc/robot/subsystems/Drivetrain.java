@@ -17,15 +17,26 @@ public class Drivetrain extends TankDrivetrain {
     private GyroBase gyro;
 
     public static final Namespace NAMESPACE = ConstantHandler.addNamespace("Drivetrain");
-    public static final Namespace PID = NAMESPACE.addChild("PID");
+    public static final Namespace FORWARD_PID = NAMESPACE.addChild("Forward PID");
 
-    public static final Supplier<Double> KP = PID.addConstantDouble("KP", 0.5);
-    public static final Supplier<Double> KI = PID.addConstantDouble("KI", 0.0);
-    public static final Supplier<Double> KD = PID.addConstantDouble("KD", 0.0);
-    public static final Supplier<Double> WAIT_TIME = PID.addConstantDouble("Wait Time", 0.1);
-    public static final Supplier<Double> TOLERANCE = PID.addConstantDouble("Tolerance", 1.0);
+    public static final Supplier<Double> FORWARD_KP = FORWARD_PID.addConstantDouble("KP", 0.5);
+    public static final Supplier<Double> FORWARD_KI = FORWARD_PID.addConstantDouble("KI", 0.0);
+    public static final Supplier<Double> FORWARD_KD = FORWARD_PID.addConstantDouble("KD", 0.0);
+    public static final Supplier<Double> FORWARD_WAIT_TIME = FORWARD_PID.addConstantDouble("Wait Time", 0.1);
+    public static final Supplier<Double> FORWARD_TOLERANCE = FORWARD_PID.addConstantDouble("Tolerance", 1.0);
 
-    public static final PIDSettings PID_SETTINGS = new PIDSettings(KP, KI, KD, TOLERANCE, WAIT_TIME);
+    public static final PIDSettings FORWARD_PID_SETTINGS = new PIDSettings(FORWARD_KP, FORWARD_KI, FORWARD_KD, FORWARD_TOLERANCE, FORWARD_WAIT_TIME);
+
+    public static final Namespace GYRO_PID = NAMESPACE.addChild("Forward PID");
+
+    public static final Supplier<Double> GYRO_KP = GYRO_PID.addConstantDouble("KP", 0.5);
+    public static final Supplier<Double> GYRO_KI = GYRO_PID.addConstantDouble("KI", 0.0);
+    public static final Supplier<Double> GYRO_KD = GYRO_PID.addConstantDouble("KD", 0.0);
+    public static final Supplier<Double> GYRO_WAIT_TIME = GYRO_PID.addConstantDouble("Wait Time", 0.1);
+    public static final Supplier<Double> GYRO_TOLERANCE = GYRO_PID.addConstantDouble("Tolerance", 1.0);
+
+    public static final PIDSettings GYRO_PID_SETTINGS = new PIDSettings(GYRO_KP, GYRO_KI, GYRO_KD, GYRO_TOLERANCE, GYRO_WAIT_TIME);
+
 
     public Drivetrain(SpeedController left, SpeedController right, Encoder leftEncoder, Encoder rightEncoder, GyroBase gyro) {
         super(left, right);
