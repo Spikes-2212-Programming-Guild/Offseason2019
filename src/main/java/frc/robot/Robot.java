@@ -41,12 +41,7 @@ public class Robot extends TimedRobot {
 
     lift.initTestingDashboard();
     gripper.initTestingDashboard();
-    testLatch();
-  }
-
-  public void testLatch() {
-    SmartDashboard.putData("latch/open", new LatchOpen());
-    SmartDashboard.putData("latch/close", new LatchClose());
+    latch.initTestingDashboard();
   }
 
   public void setDefaultCommand() {
