@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
     lift.initTestingDashboard();
     gripper.initTestingDashboard();
     latch.initTestingDashboard();
+    arm.initTestingDashboard();
   }
 
   public void setDefaultCommand() {
