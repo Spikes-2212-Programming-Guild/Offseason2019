@@ -7,6 +7,9 @@ import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.arm.ToBack;
+import frc.robot.commands.arm.ToFront;
 
 import java.util.function.Supplier;
 
@@ -75,6 +78,7 @@ public class Arm extends GenericSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        SmartDashboard.putData("arm/to back", new ToBack());
+        SmartDashboard.putData("arm/to front", new ToFront());
     }
 }

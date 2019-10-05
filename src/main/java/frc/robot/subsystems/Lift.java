@@ -18,7 +18,7 @@ public class Lift extends GenericSubsystem {
         UP {
             @Override
             public boolean canMove(double speed) {
-                return !Robot.lift.isUp() && speed > Lift.STAYING_SPEED.get();
+                return speed == 0.0 || !Robot.lift.isUp() && speed > Lift.STAYING_SPEED.get();
             }
         }, STILL {
             @Override
