@@ -20,6 +20,8 @@ public class SubsystemFactory {
         Gearbox rightGearbox=new Gearbox(RobotMap.CAN.DRIVETRAIN_TALON_RIGHT,new WPI_VictorSPX(RobotMap.CAN.DRIVETRAIN_VICTOR_RIGHT));
         Encoder leftEncoder = new Encoder(RobotMap.DIO.DRIVETRAIN_ENCODER_LEFT_A, RobotMap.DIO.DRIVETRAIN_ENCODER_LEFT_B);
         Encoder rightEncoder = new Encoder(RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_A, RobotMap.DIO.DRIVETRAIN_ENCODER_RIGHT_B);
+        leftEncoder.setDistancePerPulse(6*0.0254*Math.PI/360);
+        rightEncoder.setDistancePerPulse(6*0.0254*Math.PI/360);
         return new Drivetrain(leftGearbox, rightGearbox, leftEncoder, rightEncoder, new ADXRS450_Gyro());
     }
     public static Gripper createGripper() {
