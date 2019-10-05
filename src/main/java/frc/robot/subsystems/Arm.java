@@ -7,6 +7,9 @@ import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.arm.ToBack;
+import frc.robot.commands.arm.ToFront;
 
 import java.util.function.Supplier;
 
@@ -55,6 +58,12 @@ public class Arm extends GenericSubsystem {
     @Override
     public void stop() {
         armMotor.stopMotor();
+    }
+
+    @Override
+    public void initTestingDashboard() {
+        SmartDashboard.putData("arm/to front", new ToFront());
+        SmartDashboard.putData("arm/to back", new ToBack());
     }
 
     public AnalogPotentiometer getPotentiometer() {
