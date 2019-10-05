@@ -23,6 +23,8 @@ public class RobotMap {
         int LATCH_SERVO=9;
         int GRIPPER_RIGHT=0;
         int GRIPPER_LEFT=1;
+        int ARM_MOTOR1=3; //ask electronics for real port
+        int ARM_MOTOR2=5; //ask electronics for real port
     }
     public interface DIO{
         int GRIPPER_LIMIT =8;
@@ -32,6 +34,11 @@ public class RobotMap {
         int DRIVETRAIN_ENCODER_LEFT_B = 1;
         int DRIVETRAIN_ENCODER_RIGHT_A = 2;
         int DRIVETRAIN_ENCODER_RIGHT_B = 3;
+        int ARM_FRONT_LIMIT=4; //ask electronics for real port
+        int ARM_BACK_LIMIT=5; //ask electronics for real port
+    }
+    public interface ANALOG{
+        int ARM_POTENTIOMETER =6; //ask electronics for real port
     }
 
 }

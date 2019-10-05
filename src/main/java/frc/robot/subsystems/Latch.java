@@ -17,22 +17,27 @@ public class Latch extends Subsystem {
     public static final Supplier<Double> OPEN_ANGLE = LATCH_NAMESPACE.addConstantDouble("Open Angle", 45.0);
     public static final Supplier<Double> CLOSE_ANGLE = LATCH_NAMESPACE.addConstantDouble("Close Angle", 0.0);
     private Servo servo;
-    public Latch(Servo servo){
+
+    public Latch(Servo servo) {
         this.servo = servo;
 
         addChild(servo);
     }
-    public void open(){
+
+    public void open() {
         servo.setAngle(OPEN_ANGLE.get());
     }
-    public void close(){
+
+    public void close() {
         servo.setAngle(CLOSE_ANGLE.get());
     }
-    public boolean isOpen(){
-        return servo.getAngle()==OPEN_ANGLE.get();
+
+    public boolean isOpen() {
+        return servo.getAngle() == OPEN_ANGLE.get();
     }
-    public boolean isClose(){
-        return servo.getAngle()==CLOSE_ANGLE.get();
+
+    public boolean isClose() {
+        return servo.getAngle() == CLOSE_ANGLE.get();
     }
 
     public void initTestingDashboard() {
