@@ -23,7 +23,7 @@ public class Lift extends GenericSubsystem {
         }, STILL {
             @Override
             public boolean canMove(double speed) {
-                return false;
+                return speed == Lift.STAYING_SPEED.get();
             }
         }, DOWN {
             @Override
@@ -36,8 +36,8 @@ public class Lift extends GenericSubsystem {
     }
 
     public static final Namespace NAMESPACE = ConstantHandler.addNamespace("Lift");
-    public static final Namespace LOW_PID_NAMESPACE = NAMESPACE.addChild("LowPID");
-    public static final Namespace HIGH_PID_NAMESPACE = NAMESPACE.addChild("HighPID");
+    public static final Namespace UP_PID_NAMESPACE = NAMESPACE.addChild("Up PID");
+    public static final Namespace DOWN_PID_NAMESPACE = NAMESPACE.addChild("Down PID");
 
     public static final Supplier<Double> STAYING_SPEED = NAMESPACE.addConstantDouble("staying speed", 0.04);
 
@@ -48,25 +48,25 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> MIN_SPEED = NAMESPACE.addConstantDouble("Min Speed", -0.6);
     public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
-    public static final Supplier<Double> PID_SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
+    public static final Supplier<Double> SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
 
-    public static final Supplier<Double> KP_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_LOW_LEVEL = LOW_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_UP = UP_PID_NAMESPACE.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_UP = UP_PID_NAMESPACE.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_UP = UP_PID_NAMESPACE.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_UP = UP_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_UP = UP_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
-    public static final Supplier<Double> KP_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KP", 1);
-    public static final Supplier<Double> KI_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KI", 1);
-    public static final Supplier<Double> KD_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("KD", 1);
-    public static final Supplier<Double> TOLERANCE_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
-    public static final Supplier<Double> WAIT_TIME_HIGH_LEVEL = HIGH_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
+    public static final Supplier<Double> KP_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("KP", 1);
+    public static final Supplier<Double> KI_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("KI", 1);
+    public static final Supplier<Double> KD_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("KD", 1);
+    public static final Supplier<Double> TOLERANCE_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
+    public static final Supplier<Double> WAIT_TIME_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
-    public static final PIDSettings LOW_LEVEL_PID_SETTINGS =
-            new PIDSettings(KP_LOW_LEVEL, KI_LOW_LEVEL, KD_LOW_LEVEL, TOLERANCE_LOW_LEVEL, WAIT_TIME_LOW_LEVEL);
+    public static final PIDSettings UP_PID_SETTINGS =
+            new PIDSettings(KP_UP, KI_UP, KD_UP, TOLERANCE_UP, WAIT_TIME_UP);
 
-    public static final PIDSettings HIGH_LEVEL_PID_SETTINGS =
-            new PIDSettings(KP_HIGH_LEVEL, KI_HIGH_LEVEL, KD_HIGH_LEVEL, TOLERANCE_HIGH_LEVEL, WAIT_TIME_HIGH_LEVEL);
+    public static final PIDSettings DOWN_PID_SETTINGS =
+            new PIDSettings(KP_DOWN, KI_DOWN, KD_DOWN, TOLERANCE_DOWN, WAIT_TIME_DOWN);
 
     private Gearbox gearbox;
 
@@ -98,9 +98,6 @@ public class Lift extends GenericSubsystem {
 
     @Override
     public boolean canMove(double speed) {
-        if (speed == STAYING_SPEED.get()) {
-            return true;
-        }
         return state.canMove(speed);
     }
 
@@ -114,6 +111,14 @@ public class Lift extends GenericSubsystem {
 
     public TalonSRXEncoder getEncoder() {
         return encoder;
+    }
+
+    public LiftState getState() {
+        return state;
+    }
+
+    public void setState(LiftState state) {
+        this.state = state;
     }
 
     @Override
