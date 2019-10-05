@@ -11,7 +11,7 @@ public class LowerLift extends CommandGroup {
         requires(Robot.lift);
         addSequential(new SetLiftState(Lift.LiftState.DOWN));
         addSequential(new WaitForCondition(() -> Robot.lift.getEncoder().pidGet() == Lift.SWITCH_POINT.get()));
-        addSequential(new MoveGenericSubsystemWithPID(Robot.lift, Robot.lift.getEncoder(), 0, Lift.DOWN_PID_SETTINGS));
+        addSequential(new MoveGenericSubsystemWithPID(Robot.lift, Robot.lift.getEncoder(), Lift.TOP_SETPOINT, Lift.DOWN_PID_SETTINGS));
     }
 
     @Override
