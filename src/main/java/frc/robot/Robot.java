@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Drivetrain drivetrain;
 
-  public static GenericSubsystem gripper;
+  public static Gripper gripper;
   public static Lift lift;
   public static Latch latch;
 
