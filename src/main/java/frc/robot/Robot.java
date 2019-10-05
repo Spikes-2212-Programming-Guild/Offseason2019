@@ -39,14 +39,9 @@ public class Robot extends TimedRobot {
     drivetrain = SubsystemFactory.createDrivetrain();
     oi = new OI();
 
-    testGripper();
+    lift.initTestingDashboard();
+    gripper.initTestingDashboard();
     testLatch();
-    testLift();
-  }
-
-  public void testGripper() {
-    SmartDashboard.putData("gripper/in", new MoveGenericSubsystem(gripper, Gripper.IN_SPEED.get()));
-    SmartDashboard.putData("gripper/out", new MoveGenericSubsystem(gripper, Gripper.OUT_SPEED.get()));
   }
 
   public void testLatch() {
