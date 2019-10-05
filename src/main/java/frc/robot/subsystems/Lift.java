@@ -7,14 +7,39 @@ import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.PIDSettings;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.Robot;
 import frc.robot.commands.lift.LowerLift;
 
 import java.util.function.Supplier;
 
 public class Lift extends GenericSubsystem {
+
+    public enum LiftState {
+        UP {
+            @Override
+            public boolean canMove(double speed) {
+                return !Robot.lift.isUp() && speed > Lift.STAYING_SPEED.get();
+            }
+        }, STILL {
+            @Override
+            public boolean canMove(double speed) {
+                return false;
+            }
+        }, DOWN {
+            @Override
+            public boolean canMove(double speed) {
+                return !Robot.lift.isDown() && speed < Lift.STAYING_SPEED.get();
+            }
+        };
+
+        public abstract boolean canMove(double speed);
+    }
+
     public static final Namespace NAMESPACE = ConstantHandler.addNamespace("Lift");
     public static final Namespace LOW_PID_NAMESPACE = NAMESPACE.addChild("LowPID");
     public static final Namespace HIGH_PID_NAMESPACE = NAMESPACE.addChild("HighPID");
+
+    public static final Supplier<Double> STAYING_SPEED = NAMESPACE.addConstantDouble("staying speed", 0.04);
 
     public static final Supplier<Double> TEST_SPEED = NAMESPACE.addConstantDouble("Test Speed", 0.6);
     public static final Supplier<Double> TEST_SETPOINT = NAMESPACE.addConstantDouble("Test Setpoint", 70);
@@ -50,12 +75,15 @@ public class Lift extends GenericSubsystem {
 
     private TalonSRXEncoder encoder;
 
+    private LiftState state;
+
     public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit, TalonSRXEncoder encoder) {
         super(MIN_SPEED, MAX_SPEED);
         this.gearbox = gearbox;
         this.topLimit = topLimit;
         this.bottomLimit = bottomLimit;
         this.encoder = encoder;
+        this.state = LiftState.DOWN;
 
         addChild(gearbox);
         addChild(topLimit);
@@ -64,17 +92,16 @@ public class Lift extends GenericSubsystem {
     }
 
     @Override
-    public void apply(double v) {
-        gearbox.set(v);
+    public void apply(double speed) {
+        gearbox.set(speed);
     }
 
     @Override
-    public boolean canMove(double v) {
-        if(v > 0 && topLimit.get())
-            return false;
-        else if(v < 0 && bottomLimit.get())
-            return false;
-        return true;
+    public boolean canMove(double speed) {
+        if (speed == STAYING_SPEED.get()) {
+            return true;
+        }
+        return state.canMove(speed);
     }
 
     public boolean isDown() {
