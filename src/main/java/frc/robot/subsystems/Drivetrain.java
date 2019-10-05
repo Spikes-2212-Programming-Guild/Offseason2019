@@ -37,7 +37,6 @@ public class Drivetrain extends TankDrivetrain {
 
     public static final PIDSettings ORIENT_PID_SETTINGS = new PIDSettings(ORIENT_KP, ORIENT_KI, ORIENT_KD, ORIENT_TOLERANCE, ORIENT_WAIT_TIME);
 
-
     public Drivetrain(SpeedController left, SpeedController right, Encoder leftEncoder, Encoder rightEncoder, GyroBase gyro) {
         super(left, right);
         this.leftEncoder = leftEncoder;
@@ -49,5 +48,17 @@ public class Drivetrain extends TankDrivetrain {
         addChild(leftEncoder);
         addChild(rightEncoder);
         addChild(gyro);
+    }
+
+    public Encoder getLeftEncoder() {
+        return leftEncoder;
+    }
+
+    public Encoder getRightEncoder() {
+        return rightEncoder;
+    }
+
+    public GyroBase getGyro() {
+        return gyro;
     }
 }
