@@ -8,5 +8,6 @@ public class SetLiftState extends RunnableCommand {
 
     public SetLiftState(Lift.LiftState state) {
         super(() -> Robot.lift.setState(state));
+        requires(Robot.lift);
     }
 }
