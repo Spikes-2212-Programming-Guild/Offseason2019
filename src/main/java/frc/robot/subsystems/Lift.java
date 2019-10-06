@@ -1,14 +1,17 @@
 package frc.robot.subsystems;
 
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.PIDSettings;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.commands.lift.LowerLift;
+import frc.robot.commands.lift.RaiseLift;
 
 import java.util.function.Supplier;
 
@@ -131,6 +134,12 @@ public class Lift extends GenericSubsystem {
     @Override
     public void stop() {
         gearbox.stopMotor();
+    }
+
+    @Override
+    public void initTestingDashboard() {
+        SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(this, Lift.TEST_SPEED));
+        SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT));
     }
 
     @Override

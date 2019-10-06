@@ -1,10 +1,12 @@
 package frc.robot.subsystems;
 
 import com.spikes2212.command.genericsubsystem.GenericSubsystem;
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.utils.Namespace;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.function.Supplier;
 
@@ -39,6 +41,12 @@ public class Gripper extends GenericSubsystem {
     @Override
     public void stop() {
         motor.stopMotor();
+    }
+
+    @Override
+    public void initTestingDashboard() {
+        SmartDashboard.putData("gripper/in", new MoveGenericSubsystem(this, Gripper.IN_SPEED.get()));
+        SmartDashboard.putData("gripper/out", new MoveGenericSubsystem(this, Gripper.OUT_SPEED.get()));
     }
 
     @Override
