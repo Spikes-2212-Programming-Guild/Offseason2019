@@ -32,8 +32,8 @@ public class RobotMap {
         int LIFT_LIMIT_TOP = 7;
         int DRIVETRAIN_ENCODER_LEFT_A = 0;
         int DRIVETRAIN_ENCODER_LEFT_B = 1;
-        int DRIVETRAIN_ENCODER_RIGHT_A = 2;
-        int DRIVETRAIN_ENCODER_RIGHT_B = 3;
+        int DRIVETRAIN_ENCODER_RIGHT_A = 3;
+        int DRIVETRAIN_ENCODER_RIGHT_B = 2;
         int ARM_FRONT_LIMIT=4; //ask electronics for real port
         int ARM_BACK_LIMIT=5; //ask electronics for real port
     }

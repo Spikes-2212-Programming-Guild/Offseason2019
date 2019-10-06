@@ -41,10 +41,6 @@ public class Robot extends TimedRobot {
     arm.initTestingDashboard();
   }
 
-  public void setDefaultCommand() {
-    drivetrain.setDefaultCommand(new DriveArcade(drivetrain, OI::getRightY, OI::getLeftX));
-  }
-
   @Override
   public void robotPeriodic() {
   }

@@ -22,7 +22,7 @@ public class Arm extends GenericSubsystem {
     public static final Supplier<Double> TO_FRONT_SPEED = NAMESPACE.addConstantDouble("to front speed", 0.5);
     public static final Supplier<Double> TO_BACK_SPEED = NAMESPACE.addConstantDouble("to back speed", -0.5);
     public static final Namespace FRONT_PID =NAMESPACE.addChild("Front PID");
-    public static final Supplier <Double> SETPOINT= FRONT_PID.addConstantDouble("setpoint",0.5);  //todo- calibrate all the PID
+    public static final Supplier <Double> SETPOINT= FRONT_PID.addConstantDouble("setpoint",0.5);
     public static final Supplier <Double> TOLERANCE = FRONT_PID.addConstantDouble("tolerance",0.09);
     public static final Supplier <Double> WAIT_TIME= FRONT_PID.addConstantDouble("wait time",0.9);
     public static final Supplier <Double> FRONT_KP= FRONT_PID.addConstantDouble("kp",0.9);
