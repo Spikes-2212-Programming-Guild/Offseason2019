@@ -7,16 +7,13 @@
 
 package frc.robot;
 
-import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
-import com.spikes2212.command.genericsubsystem.GenericSubsystem;
-import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.latch.LatchClose;
-import frc.robot.commands.latch.LatchOpen;
-import frc.robot.commands.lift.RaiseLift;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Gripper;
+import frc.robot.subsystems.Latch;
+import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.*;
 
 public class Robot extends TimedRobot {
@@ -38,24 +35,10 @@ public class Robot extends TimedRobot {
     arm=SubsystemFactory.createArm();
     oi = new OI();
 
-    testGripper();
-    testLatch();
-    testLift();
-  }
-
-  public void testGripper() {
-    SmartDashboard.putData("gripper/in", new MoveGenericSubsystem(gripper, Gripper.IN_SPEED.get()));
-    SmartDashboard.putData("gripper/out", new MoveGenericSubsystem(gripper, Gripper.OUT_SPEED.get()));
-  }
-
-  public void testLatch() {
-    SmartDashboard.putData("latch/open", new LatchOpen());
-    SmartDashboard.putData("latch/close", new LatchClose());
-  }
-
-  public void testLift() {
-    SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
-    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
+    lift.initTestingDashboard();
+    gripper.initTestingDashboard();
+    latch.initTestingDashboard();
+    arm.initTestingDashboard();
   }
 
   public void setDefaultCommand() {
