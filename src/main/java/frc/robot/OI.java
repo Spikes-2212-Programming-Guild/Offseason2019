@@ -12,25 +12,34 @@ import com.spikes2212.utils.XboXUID;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.arm.ToBack;
 import frc.robot.commands.arm.ToFront;
+import frc.robot.commands.lift.LowerLift;
+import frc.robot.commands.lift.RaiseLift;
 import frc.robot.subsystems.Gripper;
 
 import frc.robot.commands.latch.LatchClose;
 import frc.robot.commands.latch.LatchOpen;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.subsystems.Lift;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI /* Gevald! */ {
     private XboXUID xbox = new XboXUID(2);
-    private Button openLatch=xbox.getLBButton();
-    private Button closeLatch=xbox.getLTButton();
-    private Button gripperIn= xbox.getRBButton();
-    private Button gripperOut= xbox.getRTButton();
-    private Button moveArmFront=xbox.getUpButton();
-    private Button moveArmBack=xbox.getDownButton();
-    private static Joystick leftJoystick=new Joystick(0);
-    private static Joystick rightJoystick=new Joystick(1);
+    private Button openLatch = xbox.getLBButton();
+    private Button closeLatch = xbox.getLTButton();
+    private Button gripperIn = xbox.getRBButton();
+    private Button gripperOut = xbox.getRTButton();
+    private Button moveArmFront = xbox.getBlueButton();
+    private Button moveArmBack = xbox.getRedButton();
+    private Button moveLiftLevel1 = xbox.getGreenButton();
+    private Button moveLiftLevel2 = xbox.getRightButton();
+    private Button moveLiftTop = xbox.getYellowButton();
+    private Button moveLiftCargoAbove = xbox.getUpButton();
+    private Button moveLiftCargoBelow = xbox.getDownButton();
+    private static Joystick leftJoystick = new Joystick(0);
+    private static Joystick rightJoystick = new Joystick(1);
 
     public OI() {
         gripperIn.whileHeld(new MoveGenericSubsystem(Robot.gripper, Gripper.IN_SPEED));
@@ -39,6 +48,11 @@ public class OI /* Gevald! */ {
         closeLatch.whenPressed(new LatchClose());
         moveArmFront.whenPressed(new ToFront());
         moveArmBack.whenPressed(new ToBack());
+        moveLiftCargoAbove.whenPressed(new RaiseLift(Lift.CARGO_SHIP_ABOVE_SETPOINT));
+        moveLiftCargoBelow.whenPressed(new RaiseLift(Lift.CARGO_SHIP_BELOW_SETPOINT));
+        moveLiftLevel1.whenPressed(new LowerLift());
+        moveLiftLevel2.whenPressed(new RaiseLift(Lift.LEVEL_2_SETPOINT));
+        moveLiftTop.whenPressed(new RaiseLift(Lift.TOP_SETPOINT));
     }
 
 

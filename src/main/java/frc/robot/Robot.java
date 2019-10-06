@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
 
   public void testLift() {
     SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(lift, Lift.TEST_SPEED));
-    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT.get()));
+    SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT));
   }
 
   public void setDefaultCommand() {
