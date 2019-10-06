@@ -14,6 +14,8 @@ import frc.robot.commands.arm.ToBack;
 import frc.robot.commands.arm.ToFront;
 import frc.robot.commands.lift.LowerLift;
 import frc.robot.commands.lift.RaiseLift;
+import frc.robot.commands.lift.RaiseLiftNoPID;
+import frc.robot.commands.lift.SetLiftState;
 import frc.robot.subsystems.Gripper;
 
 import frc.robot.commands.latch.LatchClose;
@@ -38,6 +40,8 @@ public class OI /* Gevald! */ {
     private Button moveLiftTop = xbox.getYellowButton();
     private Button moveLiftCargoAbove = xbox.getUpButton();
     private Button moveLiftCargoBelow = xbox.getDownButton();
+    private Button moveLiftUp = xbox.getButtonBack();
+    private Button moveLiftDown = xbox.getButtonStart();
     private static Joystick leftJoystick = new Joystick(0);
     private static Joystick rightJoystick = new Joystick(1);
 
@@ -53,6 +57,9 @@ public class OI /* Gevald! */ {
         moveLiftLevel1.whenPressed(new LowerLift());
         moveLiftLevel2.whenPressed(new RaiseLift(Lift.LEVEL_2_SETPOINT));
         moveLiftTop.whenPressed(new RaiseLift(Lift.TOP_SETPOINT));
+        moveLiftUp.whileHeld(new RaiseLiftNoPID());
+        moveLiftDown.whenPressed(new SetLiftState(Lift.LiftState.DOWN));
+        
     }
 
 
