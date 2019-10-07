@@ -51,11 +51,11 @@ public class SubsystemFactory {
     public static Arm createArm(){
         VictorSP motor1=new VictorSP(RobotMap.PWM.ARM_MOTOR1);
         VictorSP motor2=new VictorSP(RobotMap.PWM.ARM_MOTOR2);
-        SpeedControllerGroup motors=new SpeedControllerGroup(motor1,motor2);
+        SpeedControllerGroup motor=new SpeedControllerGroup(motor1,motor2);
         AnalogPotentiometer potentiometer=new AnalogPotentiometer(RobotMap.ANALOG.ARM_POTENTIOMETER);
         DigitalInput limitBack=new DigitalInput(RobotMap.DIO.ARM_BACK_LIMIT);
         DigitalInput limitFront=new DigitalInput(RobotMap.DIO.ARM_FRONT_LIMIT);
-        return new Arm(motors,limitBack,limitFront,potentiometer);
+        return new Arm(motor,limitBack,limitFront,potentiometer);
     }
 
 }
