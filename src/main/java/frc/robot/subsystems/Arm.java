@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import java.util.function.Supplier;
 
 public class Arm extends GenericSubsystem {
-    private SpeedControllerGroup armMotor;
+    private SpeedControllerGroup motors;
     private DigitalInput backLimit;
     private DigitalInput frontLimit;
     private AnalogPotentiometer potentiometer;
@@ -33,8 +33,8 @@ public class Arm extends GenericSubsystem {
     public static final Supplier <Double> BACK_KD = FRONT_PID.addConstantDouble("kd",0.9);
     public static final PIDSettings BACK_PID_SETTINGS =new PIDSettings(BACK_KP, BACK_KI, BACK_KD, TOLERANCE,WAIT_TIME);
 
-    public Arm(SpeedControllerGroup armMotor, DigitalInput backLimit, DigitalInput frontLimit, AnalogPotentiometer potentiometer) {
-        this.armMotor = armMotor;
+    public Arm(SpeedControllerGroup motors, DigitalInput backLimit, DigitalInput frontLimit, AnalogPotentiometer potentiometer) {
+        this.motors = motors;
         this.backLimit = backLimit;
         this.frontLimit = frontLimit;
         this.potentiometer = potentiometer;
@@ -42,19 +42,17 @@ public class Arm extends GenericSubsystem {
 
     @Override
     public void apply(double v) {
-        armMotor.set(v);
+        motors.set(v);
     }
 
     @Override
     public boolean canMove(double v) {
-        if (v < 0 && backLimit.get() || v > 0 && frontLimit.get())
-            return false;
-        return true;
+            return v < 0 && backLimit.get() || v > 0 && frontLimit.get();
     }
 
     @Override
     public void stop() {
-        armMotor.stopMotor();
+        motors.stopMotor();
     }
 
     public AnalogPotentiometer getPotentiometer() {
