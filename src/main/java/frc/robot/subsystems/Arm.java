@@ -42,7 +42,7 @@ public class Arm extends GenericSubsystem {
         this.frontLimit = frontLimit;
         this.potentiometer = potentiometer;
 
-        addChild(armMotor);
+        addChild(motor);
         addChild(backLimit);
         addChild(frontLimit);
         addChild(potentiometer);

@@ -53,6 +53,7 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
     public static final Supplier<Double> SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
+    public static final Supplier<Double> SWOTH_HEIGHT = NAMESPACE.addConstantDouble("Switch Point Height", 0.708);
 
     public static final Supplier<Double> KP_UP = UP_PID_NAMESPACE.addConstantDouble("KP", 1);
     public static final Supplier<Double> KI_UP = UP_PID_NAMESPACE.addConstantDouble("KI", 1);
