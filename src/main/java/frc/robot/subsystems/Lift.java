@@ -53,7 +53,8 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
     public static final Supplier<Double> SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
-    public static final Supplier<Double> SWOTH_HEIGHT = NAMESPACE.addConstantDouble("Switch Point Height", 0.708);
+    public static final Supplier<Double> SWITCH_HEIGHT = NAMESPACE.addConstantDouble("Switch Point Height", 0.708);
+    public static final Supplier<Double> INITIAL_HEIGHT = NAMESPACE.addConstantDouble("Initial Latch Height", 0.395);
 
     public static final Supplier<Double> KP_UP = UP_PID_NAMESPACE.addConstantDouble("KP", 1);
     public static final Supplier<Double> KI_UP = UP_PID_NAMESPACE.addConstantDouble("KI", 1);
@@ -146,5 +147,9 @@ public class Lift extends GenericSubsystem {
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new LowerLift());
+    }
+
+    public static double encoderValueFromHeight(double height) {
+        return (height - INITIAL_HEIGHT.get()) * SWITCH_POINT.get() / SWITCH_HEIGHT.get();
     }
 }
