@@ -68,11 +68,10 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> TOLERANCE_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
     public static final Supplier<Double> WAIT_TIME_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
-    public static final Supplier<Double> TOP_SETPOINT = SETPOINTS.addConstantDouble("top", 80);
-    public static final Supplier<Double> LEVEL_1_SETPOINT = SETPOINTS.addConstantDouble("level 1", 0);
-    public static final Supplier<Double> LEVEL_2_SETPOINT = SETPOINTS.addConstantDouble("level 2", 30);
-    public static final Supplier<Double> CARGO_SHIP_ABOVE_SETPOINT = SETPOINTS.addConstantDouble("cargo ship above", 10);
-    public static final Supplier<Double> CARGO_SHIP_BELOW_SETPOINT = SETPOINTS.addConstantDouble("cargo ship below", 50);
+    public static final Supplier<Double> TOP_SETPOINT = SETPOINTS.addConstantDouble("top", 1.811);
+    public static final Supplier<Double> LEVEL_2_SETPOINT = SETPOINTS.addConstantDouble("level 2", 0.926);
+    public static final Supplier<Double> CARGO_SHIP_ABOVE_SETPOINT = SETPOINTS.addConstantDouble("cargo ship above", 0.572);
+    public static final Supplier<Double> CARGO_SHIP_BELOW_SETPOINT = SETPOINTS.addConstantDouble("cargo ship below", 1.28);
 
     public static final PIDSettings UP_PID_SETTINGS =
             new PIDSettings(KP_UP, KI_UP, KD_UP, TOLERANCE_UP, WAIT_TIME_UP);
