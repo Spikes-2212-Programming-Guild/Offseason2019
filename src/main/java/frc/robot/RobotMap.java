@@ -40,5 +40,8 @@ public class RobotMap {
     public interface ANALOG{
         int ARM_POTENTIOMETER =6; //ask electronics for real port
     }
-
+    public interface USB {
+        int FRONT_CAM = 0;
+        int BACK_CAM = 1;
+    }
 }
