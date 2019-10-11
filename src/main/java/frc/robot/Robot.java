@@ -8,6 +8,11 @@
 package frc.robot;
 
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
+import com.spikes2212.utils.CamerasHandler;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drivetrain;
@@ -26,8 +31,17 @@ public class Robot extends TimedRobot {
   public static Latch latch;
   public static Arm arm;
 
+  public CameraServer cameraServer;
+  public VideoSource frontCam;
+  public VideoSource backCam;
+  
   @Override
   public void robotInit() {
+    cameraServer = CameraServer.getInstance();
+    frontCam = new UsbCamera("cam", RobotMap.USB.FRONT_CAM);
+    backCam = new UsbCamera("cam", RobotMap.USB.BACK_CAM);
+    cameraServer.startAutomaticCapture(backCam);
+
     gripper = SubsystemFactory.createGripper();
     lift = SubsystemFactory.createLift();
     latch = SubsystemFactory.createLatch();
