@@ -42,7 +42,7 @@ public class SubsystemFactory {
         DigitalInput topLimit = new DigitalInput(RobotMap.DIO.LIFT_LIMIT_TOP);
 
         TalonSRXEncoder encoder = new TalonSRXEncoder(new WPI_TalonSRX(RobotMap.CAN.LIFT_ENCODER), Lift.DISTANCE_PER_PULSE.get());
-
+        encoder.setDistancePerPulse(Lift.HEIGHT_PER_ENCODER_PULSE);
         return new Lift(gearbox, topLimit, bottomLimit, encoder);
     }
     public static Latch createLatch(){

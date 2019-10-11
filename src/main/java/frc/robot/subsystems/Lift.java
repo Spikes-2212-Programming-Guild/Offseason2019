@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.commands.lift.LowerLift;
 import frc.robot.commands.lift.RaiseLift;
+import frc.robot.commands.lift.SetLiftState;
 
 import java.util.function.Supplier;
 
@@ -72,6 +73,9 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> CARGO_SHIP_ABOVE_SETPOINT = SETPOINTS.addConstantDouble("cargo ship above", 10);
     public static final Supplier<Double> CARGO_SHIP_BELOW_SETPOINT = SETPOINTS.addConstantDouble("cargo ship below", 50);
 
+
+    public static final double HEIGHT_PER_ENCODER_PULSE = -(1.9-0.395) / (20*4096);
+
     public static final PIDSettings UP_PID_SETTINGS =
             new PIDSettings(KP_UP, KI_UP, KD_UP, TOLERANCE_UP, WAIT_TIME_UP);
 
@@ -86,6 +90,13 @@ public class Lift extends GenericSubsystem {
     private TalonSRXEncoder encoder;
 
     private LiftState state;
+
+    @Override
+    public void periodic() {
+        if (isDown() && this.state == LiftState.DOWN) {
+            encoder.reset();
+        }
+    }
 
     public Lift(Gearbox gearbox, DigitalInput topLimit, DigitalInput bottomLimit, TalonSRXEncoder encoder) {
         super(MIN_SPEED, MAX_SPEED);
@@ -140,10 +151,12 @@ public class Lift extends GenericSubsystem {
     public void initTestingDashboard() {
         SmartDashboard.putData("lift/raise with constant speed", new MoveGenericSubsystem(this, Lift.TEST_SPEED));
         SmartDashboard.putData("lift/raise with PID", new RaiseLift(Lift.TEST_SETPOINT));
+        SmartDashboard.putData("lift/set state up", new SetLiftState(LiftState.UP));
+        SmartDashboard.putData("lift/set state down", new SetLiftState(LiftState.DOWN));
     }
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new LowerLift());
+//        setDefaultCommand(new LowerLift());
     }
 }
