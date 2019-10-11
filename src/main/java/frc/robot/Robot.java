@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.spikes2212.command.drivetrains.commands.DriveArcade;
+import com.spikes2212.dashboard.DashBoardController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drivetrain;
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
   public static Latch latch;
   public static Arm arm;
 
+  public DashBoardController dbc = new DashBoardController();
   @Override
   public void robotInit() {
     gripper = SubsystemFactory.createGripper();
@@ -39,10 +41,14 @@ public class Robot extends TimedRobot {
     gripper.initTestingDashboard();
     latch.initTestingDashboard();
     arm.initTestingDashboard();
+
+    dbc.addString("lift/state", () -> lift.getState().name());
+    dbc.addNumber("lift/encoder value", lift.getEncoder()::pidGet);
   }
 
   @Override
   public void robotPeriodic() {
+    dbc.update();
   }
 
   @Override
