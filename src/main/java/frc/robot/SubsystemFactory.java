@@ -3,7 +3,6 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 import com.spikes2212.motor.Gearbox;
 import com.spikes2212.utils.TalonSRXEncoder;
 import edu.wpi.first.wpilibj.*;
@@ -51,9 +50,7 @@ public class SubsystemFactory {
         return latch;
     }
     public static Arm createArm(){
-        VictorSP motor1=new VictorSP(RobotMap.PWM.ARM_MOTOR1);
-        VictorSP motor2=new VictorSP(RobotMap.PWM.ARM_MOTOR2);
-        SpeedControllerGroup motor=new SpeedControllerGroup(motor1,motor2);
+        VictorSP motor=new VictorSP(RobotMap.PWM.ARM_MOTOR1);
         AnalogPotentiometer potentiometer=new AnalogPotentiometer(RobotMap.ANALOG.ARM_POTENTIOMETER);
         DigitalInput limitBack=new DigitalInput(RobotMap.DIO.ARM_BACK_LIMIT);
         DigitalInput limitFront=new DigitalInput(RobotMap.DIO.ARM_FRONT_LIMIT);

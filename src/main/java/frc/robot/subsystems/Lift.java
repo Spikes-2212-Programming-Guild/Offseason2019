@@ -54,6 +54,8 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> DISTANCE_PER_PULSE = NAMESPACE.addConstantDouble("Distance per Pulse", (1.0 / 1024.0));
 
     public static final Supplier<Double> SWITCH_POINT = NAMESPACE.addConstantDouble("PID Switch Point", 40);
+    public static final Supplier<Double> SWITCH_HEIGHT = NAMESPACE.addConstantDouble("Switch Point Height", 0.708);
+    public static final Supplier<Double> INITIAL_HEIGHT = NAMESPACE.addConstantDouble("Initial Height", 0.395);
 
     public static final Supplier<Double> KP_UP = UP_PID_NAMESPACE.addConstantDouble("KP", 1);
     public static final Supplier<Double> KI_UP = UP_PID_NAMESPACE.addConstantDouble("KI", 1);
@@ -67,12 +69,10 @@ public class Lift extends GenericSubsystem {
     public static final Supplier<Double> TOLERANCE_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Tolerance", 1);
     public static final Supplier<Double> WAIT_TIME_DOWN = DOWN_PID_NAMESPACE.addConstantDouble("Wait Time", 1);
 
-    public static final Supplier<Double> TOP_SETPOINT = SETPOINTS.addConstantDouble("top", 80);
-    public static final Supplier<Double> LEVEL_1_SETPOINT = SETPOINTS.addConstantDouble("level 1", 0);
-    public static final Supplier<Double> LEVEL_2_SETPOINT = SETPOINTS.addConstantDouble("level 2", 30);
-    public static final Supplier<Double> CARGO_SHIP_ABOVE_SETPOINT = SETPOINTS.addConstantDouble("cargo ship above", 10);
-    public static final Supplier<Double> CARGO_SHIP_BELOW_SETPOINT = SETPOINTS.addConstantDouble("cargo ship below", 50);
-
+    public static final Supplier<Double> TOP_SETPOINT = SETPOINTS.addConstantDouble("top", 1.9);
+    public static final Supplier<Double> LEVEL_2_SETPOINT = SETPOINTS.addConstantDouble("level 2", 0.926);
+    public static final Supplier<Double> CARGO_SHIP_ABOVE_SETPOINT = SETPOINTS.addConstantDouble("cargo ship above", 0.572);
+    public static final Supplier<Double> CARGO_SHIP_BELOW_SETPOINT = SETPOINTS.addConstantDouble("cargo ship below", 1.28);
 
     public static final double HEIGHT_PER_ENCODER_PULSE = -(1.9-0.395) / (20*4096);
 

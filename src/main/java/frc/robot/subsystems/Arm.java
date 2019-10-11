@@ -6,7 +6,7 @@ import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.arm.ToBack;
 import frc.robot.commands.arm.ToFront;
@@ -14,7 +14,7 @@ import frc.robot.commands.arm.ToFront;
 import java.util.function.Supplier;
 
 public class Arm extends GenericSubsystem {
-    private SpeedControllerGroup motor;
+    private SpeedController motor;
     private DigitalInput backLimit;
     private DigitalInput frontLimit;
     private AnalogPotentiometer potentiometer;
@@ -36,7 +36,7 @@ public class Arm extends GenericSubsystem {
     public static final Supplier <Double> BACK_KD = FRONT_PID.addConstantDouble("kd",0.9);
     public static final PIDSettings BACK_PID_SETTINGS =new PIDSettings(BACK_KP, BACK_KI, BACK_KD, TOLERANCE,WAIT_TIME);
 
-    public Arm(SpeedControllerGroup motor, DigitalInput backLimit, DigitalInput frontLimit, AnalogPotentiometer potentiometer) {
+    public Arm(SpeedController motor, DigitalInput backLimit, DigitalInput frontLimit, AnalogPotentiometer potentiometer) {
         this.motor = motor;
         this.backLimit = backLimit;
         this.frontLimit = frontLimit;
